@@ -6,7 +6,7 @@ const Review = db.reviews;
 const addReview = async(req,res)=>{
     try {
         let data = {
-            product_id: 1,
+            product_id: req.params.id,
             description:req.body.description,
             rating:req.body.rating
         }
