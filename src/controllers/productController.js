@@ -54,6 +54,12 @@ const updateProduct = async(req,res)=>{
 //Delete Product
 const deleteProduct = async(req,res)=>{
     try {
+        const product = await Product.findOne({where:{id:req.params.id}})
+
+        if(!product)
+        {
+            return res.status(500).send("Product not found");
+        }
         await Product.destroy({where:{id:req.params.id}})
 
         res.status(200).send("Product Deleted")

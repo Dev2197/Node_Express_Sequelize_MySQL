@@ -2,6 +2,7 @@ const dbconfig = require('../config/db');
 
 const {Sequelize, DataTypes} = require('sequelize');
 
+
 const sequelize = new Sequelize(
     dbconfig.DB,
     dbconfig.USER,
@@ -26,6 +27,7 @@ db.sequelize = sequelize;
 
 db.products = require('./prodctModel')(sequelize,DataTypes)
 db.reviews = require('./reviewModel')(sequelize,DataTypes)
+db.user = require('./userModel')(sequelize,DataTypes)
 
 db.sequelize.sync({force:false})
 .then(()=>{

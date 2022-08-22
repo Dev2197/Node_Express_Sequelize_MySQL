@@ -52,6 +52,12 @@ const updateReview = async(req,res)=>{
 
 const deleteReview = async(req,res)=>{
     try {
+        const review = await Review.findOne({where:{id:req.params.id}});
+
+        if(!review)
+        {
+            return res.status(500).send("Review not found")
+        }
         await Review.destroy({where:{id:req.params.id}})
 
         res.status(200).send("Review Deleted")
